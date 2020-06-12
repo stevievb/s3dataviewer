@@ -1,0 +1,24 @@
+name: s3DataViewerEnv
+channels:
+  - defaults
+dependencies:
+  - bokeh
+  - datashader
+  - holoviews
+  - marshmallow
+  - numpy
+  - pandas
+  - pillow
+  - pip
+  - python
+  - requests
+  - scipy
+  - tornado
+  - pip:
+    - aiohttp
+    - aiohttp-apispec
+    - aiohttp-cors
+    - aiojobs
+    - boto3
+    - trafaret-config
+    - tqdm

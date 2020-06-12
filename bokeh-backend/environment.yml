@@ -1,0 +1,21 @@
+name: s3DataViewerPlotServerEnv
+channels:
+  - defaults
+dependencies:
+  - bokeh
+  - datashader
+  - holoviews
+  - marshmallow
+  - nodejs
+  - numpy
+  - pandas
+  - pillow
+  - pip
+  - python
+  - requests
+  - scipy
+  - tornado
+  - pip:
+    - boto3
+    - trafaret-config
+    - tqdm

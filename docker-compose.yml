@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - plot
+    environment:
+      - AWS_ACCESS_KEY_ID=an_example_keyid
+      - AWS_SECRET_ACCESS_KEY=an_example_secret_key
+  plot:
+    build: ./bokeh-backend
+    ports:
+      - "5006:5006"
+    environment:
+      - AWS_ACCESS_KEY_ID=an_example_keyid
+      - AWS_SECRET_ACCESS_KEY=an_example_secret_key
+  frontend:
+    build: ./frontend
+    ports:
+      - "8888:80"
+    depends_on:
+      - backend
+      - plot
