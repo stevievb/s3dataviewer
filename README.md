@@ -70,9 +70,9 @@ Currently the only type of data for which rendering is supported is images
  ### rest api design
  
     - endpoints 
-        /images
+        /plots - GET
             
-            gets a list of bokeh html tags to be embedded in fronend web app
+            gets a list of bokeh html plots to be embedded in fronend web app
         
             - parameters
                 - bucket
@@ -82,5 +82,16 @@ Currently the only type of data for which rendering is supported is images
                 - order
                 - limit
                 - offset
+                
+        /ping - GET
+            
+            get the status to see server is up
+            
+        /index - PUT
+            
+            builds the index of and s3 bucket/prefix 
+         
+                
+          
         
 
