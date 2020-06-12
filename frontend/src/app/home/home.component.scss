@@ -1,0 +1,51 @@
+main {
+    width: 100%;
+    height: 100%;
+  
+    mat-toolbar {
+      mat-toolbar-row {
+        &.title-bar {
+          height: 85px;
+  
+          mat-form-field {
+            font-size: 60%;
+          }
+  
+          .mat-paginator {
+            background: none;
+            color: white !important;
+  
+            .mat-paginator-page-size .mat-select-trigger {
+              color: white !important;
+            }
+          }
+        }
+  
+        &.selection-bar {
+          background: slategray;
+          font-size: 80%;
+        }
+      }
+    }
+  
+    section {
+      width: 100%;
+      height: calc(100% - 85px);
+  
+      mat-grid-list {
+        width: calc(100% - 50px);
+        margin: 20px;
+    
+        mat-grid-tile {
+          padding: 5px;
+  
+          mat-card {
+            &.selected {
+              background: lightslategrey;
+            }
+          }
+        }
+      }
+    }
+  }
+  

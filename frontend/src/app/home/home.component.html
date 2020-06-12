@@ -1,0 +1,80 @@
+<main>
+  <mat-toolbar>
+    <mat-toolbar-row class="title-bar" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+      <mat-form-field appearance="fill">
+        <mat-label>S3 bucket</mat-label>
+        <input matInput placeholder="S3 bucket"  #bucketInput>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>S3 Prefix</mat-label>
+        <input matInput placeholder="S3 Prefix"  #bucketPrefix>
+      </mat-form-field>
+
+
+
+      <span fxFlex></span>
+  
+      <button mat-raised-button color="accent"
+              (click)="searchObjects(bucketInput.value, bucketPrefix.value)">
+        <mat-icon>build</mat-icon>
+        Build Index
+      </button>
+  
+      <button mat-raised-button color="accent" (click)="getPlots(bucketInput.value)">
+        <mat-icon>get_app</mat-icon>
+        Get Plots
+      </button>
+  
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex"
+                      (page)="pageEvent($event, bucketInput.value)" color="dark"></mat-paginator>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row class="selection-bar" *ngIf="getAnySelectedImages().length" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+      <button mat-icon-button (click)="clearSelection()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <span>{{ getAnySelectedImages().length }} Selected</span>
+
+      <span fxFlex></span>
+  
+      <button mat-raised-button color="accent" (click)="selectAllImages()" [disabled]="getAnySelectedImages().length === plots.length">
+        <mat-icon>done_all</mat-icon>
+        Select All
+      </button>
+  
+      <button mat-raised-button color="accent" (click)="copyImages()">
+        <mat-icon>file_copy</mat-icon>
+        Copy
+      </button>
+  
+      <button mat-raised-button color="accent" (click)="moveImages()">
+        <mat-icon>folder</mat-icon>
+        Move
+      </button>
+  
+      <button mat-raised-button color="accent" (click)="deleteImages()">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <section fxLayout fxLayoutAlign="center center">
+    <mat-spinner *ngIf="pageLoading"></mat-spinner>
+
+    <mat-grid-list cols="4" rowHeight="250px" gutterSize="15px" *ngIf="!pageLoading">
+      <mat-grid-tile *ngFor="let plot of plots">
+        <mat-card fxLayout="column" fxLayoutAlign="start center" [ngClass]="{'mat-elevation-z3 selected': plot.selected}">
+            <mat-card-header>
+              <mat-card-subtitle>{{ plot.Key }} - {{ plot.Size | bytes }}</mat-card-subtitle>
+              <mat-checkbox [(ngModel)]="plot.selected"></mat-checkbox>
+            </mat-card-header>
+
+            <app-bokeh-plot [token]="plot.token" [bokehScriptId]="plot.script_id" [bokehSessionId]="plot.session_id" [bokehScriptSrc]="plot.script_src"></app-bokeh-plot>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+</main>
