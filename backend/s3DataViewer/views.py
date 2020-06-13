@@ -10,6 +10,7 @@ from bokeh.embed import server_document, server_session
 from bokeh.client import pull_session
 from bokeh.util.session_id import generate_session_id
 from bokeh.util.token import generate_jwt_token
+import os
 
 from .utils import get_matching_s3_keys
 from .models import PlotsRequestSchema, S3ObjectBokehPlotSchema, IndexRequestSchema, S3ObjectRecordSchema, \
@@ -42,7 +43,7 @@ async def get_plots(request):
                     offset:limit + offset]
     record_dicts_list = selected_keys.to_dict(orient='records')
     for i, record in enumerate(record_dicts_list):
-        localhost_url = "http://localhost:5006/image"
+        localhost_url = 'http://' + os.environ['SERVER_HOST_NAME'] + ':5006/image'
 
         arguments = {'key': record['Key'], 'bucket': request.app['bucket'],
                      'width': loaded_request['width'],

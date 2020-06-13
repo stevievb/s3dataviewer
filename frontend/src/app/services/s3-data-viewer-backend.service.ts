@@ -10,7 +10,7 @@ import { S3ObjectBokehPlotsGetResponse } from 'src/app/models/s3-object-bokeh-pl
 
 export class S3DataViewerBackendService {
 
-    API_URL = 'http://localhost:8080';
+    API_URL = 'http://' + window.location.hostname + ':8080';
 
     constructor(private http: HttpClient) {
     }
