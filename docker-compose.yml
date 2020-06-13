@@ -10,6 +10,7 @@ services:
     environment:
       - AWS_ACCESS_KEY_ID=an_example_keyid
       - AWS_SECRET_ACCESS_KEY=an_example_secret_key
+      - SERVER_HOST_NAME=localhost
   plot:
     build: ./bokeh-backend
     ports:
