@@ -34,7 +34,7 @@ export class BokehPlotComponent implements OnInit, AfterViewInit {
   }
 
   embedPlot(): void {
-    const local_url = 'http://localhost:5006/image';
+    const local_url = 'http://' + window.location.hostname + ':5006/image';
     const docs_json = 'null';
     let render_items: Array<any> = [{
       'elementid': this.bokehScriptId.toString(),
