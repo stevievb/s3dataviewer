@@ -37,10 +37,10 @@ export class HomeComponent {
     this.getScreenSize();
   }
 
-  searchObjects(bucket, prefix): void {
+  searchObjects(bucket, prefix, suffix): void {
     this.pageLoading = true;
 
-    this.backendService.buildIndex(bucket, prefix)
+    this.backendService.buildIndex(bucket, prefix, suffix)
       .pipe(finalize(() => this.pageLoading = false))
       .subscribe();
   }

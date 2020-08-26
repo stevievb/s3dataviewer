@@ -70,7 +70,7 @@ async def get_plots(request):
 async def build_index(request):
     body = await request.read()
     loaded_request = IndexRequestSchema().loads(body)
-    keys = get_matching_s3_keys(bucket=loaded_request['bucket'], prefix=loaded_request['prefix'])
+    keys = get_matching_s3_keys(bucket=loaded_request['bucket'], prefix=loaded_request['prefix'], suffix=loaded_request['suffix'])
     request.app['keys_df'] = pd.DataFrame.from_records(keys)
     request.app['bucket'] = loaded_request['bucket']
     return web.HTTPOk()

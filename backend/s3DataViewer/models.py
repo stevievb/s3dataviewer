@@ -14,6 +14,7 @@ class PlotsRequestSchema(Schema):
 class IndexRequestSchema(Schema):
     bucket = fields.Str(description="name of S3 bucket containing data to be rendered", required=True)
     prefix = fields.Str(description="Limits the response to keys that begin with the specified prefix", missing="")
+    suffix = fields.Str(missing="")   
 
 
 class S3ObjectRecordSchema(Schema):

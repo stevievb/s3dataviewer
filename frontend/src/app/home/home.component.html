@@ -11,12 +11,17 @@
         <input matInput placeholder="S3 Prefix"  #bucketPrefix>
       </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>S3 Suffix</mat-label>
+        <input matInput placeholder="S3 Suffix"  #bucketSuffix>
+      </mat-form-field>
+
 
 
       <span fxFlex></span>
   
       <button mat-raised-button color="accent"
-              (click)="searchObjects(bucketInput.value, bucketPrefix.value)">
+              (click)="searchObjects(bucketInput.value, bucketPrefix.value, bucketSuffix.value)">
         <mat-icon>build</mat-icon>
         Build Index
       </button>

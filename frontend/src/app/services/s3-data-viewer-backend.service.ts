@@ -15,10 +15,11 @@ export class S3DataViewerBackendService {
     constructor(private http: HttpClient) {
     }
 
-    buildIndex(bucket, prefix): Observable<any> {
+    buildIndex(bucket, prefix, suffix): Observable<any> {
         return this.http.put(`${this.API_URL}/index`, {
             bucket: bucket,
             prefix: prefix,
+	    suffix: suffix,
         }, {});
     }
 
